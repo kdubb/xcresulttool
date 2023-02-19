@@ -51,11 +51,10 @@ async function run(): Promise<void> {
 
       const octokit = new Octokit()
 
-      const owner = github.context.repo.owner
-      const repo = github.context.repo.repo
-
-      const pr = github.context.payload.pull_request
-      const sha = (pr && pr.head.sha) || github.context.sha
+      const ownerRepo = core.getInput('repo').split('/', 2)
+      const owner = ownerRepo[0]
+      const repo = ownerRepo[1]
+      const sha = core.getInput('sha')
 
       const charactersLimit = 65535
       let title = core.getInput('title')

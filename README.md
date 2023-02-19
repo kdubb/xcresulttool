@@ -98,6 +98,16 @@ jobs:
     # Default: ${{ github.token }}
     token: ''
 
+    # Target SHA for reported checks.
+    #
+    # Default: PR or branch SHA
+    sha:
+
+    # Target repository for reported checks (in {owner}/{repo} format).
+    #
+    # Default: PR or branch repository
+    repo:
+
     # Title for the check results.
     #
     # Default: 'Xcode test results'

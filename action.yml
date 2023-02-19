@@ -8,6 +8,12 @@ inputs:
   token:
     description: 'The GitHub authentication token'
     default: ${{ github.token }}
+  sha:
+    description: 'Target SHA for reported checks'
+    default: ${{ github.event.pull_request.head.sha || github.event.sha }}
+  repo:
+    description: 'Target repository for reported checks'
+    default: ${{ format('{owner}/{repo}', github.repo.owner, github.repo.repo) }}
   title:
     description: 'Title for the check results'
     default: 'Xcode test results'
