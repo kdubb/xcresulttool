@@ -271,15 +271,17 @@ test('NoTests.xcresult', async () => {
   )
 })
 
-test('test runs', () => {
+test('test runs', async () => {
   process.env['INPUT_PATH'] = '__tests__/data/Example.xcresult'
   process.env['INPUT_SHOW-PASSED-TESTS'] = 'true'
   process.env['INPUT_SHOW-CODE-COVERAGE'] = 'true'
   process.env['INPUT_UPLOAD-BUNDLES'] = 'true'
+  process.env['GITHUB_STEP_SUMMARY'] = '__tests__/data/step-summary.md'
   const np = process.execPath
   const ip = path.join(__dirname, '..', 'lib', 'main.js')
   const options: cp.ExecFileSyncOptions = {
     env: process.env
   }
+  await promises.writeFile('__tests__/data/step-summary.md', '')
   console.log(cp.execFileSync(np, [ip], options).toString())
 })
